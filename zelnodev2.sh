@@ -148,7 +148,10 @@ cd
     echo -e
     mkdir ~/zeltemp
 
-    wget -c $WALLET_BOOTSTRAP -O ~/zeltemp/$BOOTSTRAP_ZIP_FILE && unzip -n ~/zeltemp/$BOOTSTRAP_ZIP_FILE -d ~/zeltemp
+    wget -c $WALLET_BOOTSTRAP -O ~/zeltemp/$BOOTSTRAP_ZIP_FILE
+    echo -e "\033[1;32mExtracting bootstrap files, this will take some time...\033[0m"
+    sleep 3
+    unzip -n ~/zeltemp/$BOOTSTRAP_ZIP_FILE -d ~/zeltemp
 	unzip -n ~/zeltemp/$BOOTSTRAP_ZIP_FILE -d ~/zeltemp
 	cp -r ~/zeltemp/chainstate ~/.zelcash/
 	cp -r ~/zeltemp/blocks ~/.zelcash/  

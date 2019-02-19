@@ -54,7 +54,7 @@ clear
 echo -e '\033[1;33m=======================================================\033[0m'
 echo -e 'ZelNode Setup, v2.0'
 echo -e '\033[1;33m=======================================================\033[0m'
-echo -e '\033[1;34m15 Feb. 2019, by alltank fam, dk808zelnode, Goose-Tech & Skyslayer\033[0m'
+echo -e '\033[1;34m19 Feb. 2019, by alltank fam, dk808zelnode, Goose-Tech & Skyslayer\033[0m'
 echo -e
 echo -e '\033[1;36mNode setup starting, press [CTRL-C] to cancel.\033[0m'
 sleep 3

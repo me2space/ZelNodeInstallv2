@@ -64,7 +64,7 @@ __NOTE:__ This process may take anywhere from 5 to 15 minutes, depending on your
 
 Once the script completes, it will output the wallet info, which shows the sync status. Make sure blocks is > 0.
 
-A special thank you to **alltank fam** & **dk808** for their contributions to this scrypt, and the **ZelCash Team** for debugging and assistance.
+A special thank you to **alltank fam**, **dk808**, & **Skyslayer** for their contributions to this scrypt, and the **ZelCash Team** for debugging and assistance.
 
 If you found this script helpful, please consider donating:
 

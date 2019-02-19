@@ -1,5 +1,4 @@
-# ZelNodeInstallv2
-# ZelNode Setup
+# ZelNode Setup v2
 A bash script to assist in setup/creation of ZelCash Node
 
 ## NOTE: This script is configured for testnet only. When prompted, please select option for testnet.

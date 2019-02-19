@@ -60,7 +60,8 @@ echo -e '\033[1;36mNode setup starting, press [CTRL-C] to cancel.\033[0m'
 sleep 3
 
 echo -e
-#read -p 'Enter your username, then press [ENTER]: ' USERNAME
+#Suppressing password promts for this user so zelnode can operate
+sudo echo -e "$(who -m | awk '{print $1;}') ALL=(ALL) NOPASSWD:ALL" | sudo EDITOR='tee -a' visudo
 
 echo -e "\033[1;33m=======================================================\033[0m"
 echo "INSTALLING ZELNODE DEPENDENCIES"
@@ -149,7 +150,6 @@ cd
 
     wget -c $WALLET_BOOTSTRAP -O ~/zeltemp/$BOOTSTRAP_ZIP_FILE && unzip -n ~/zeltemp/$BOOTSTRAP_ZIP_FILE -d ~/zeltemp
 	unzip -n ~/zeltemp/$BOOTSTRAP_ZIP_FILE -d ~/zeltemp
-	cp -nr ~/zeltemp/* ~/.zelcash/
 	cp -r ~/zeltemp/chainstate ~/.zelcash/
 	cp -r ~/zeltemp/blocks ~/.zelcash/  
 	rm ~/zeltemp -R

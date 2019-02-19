@@ -5,7 +5,7 @@ A bash script to assist in setup/creation of ZelCash Node
 
 **NOTE:** This installation guide is provided as is with no warranties of any kind.
 
-**NOTE:** This version of the script (v1.0) automatically detects your IP address, but also allows you to enter one manually. It will also give you the option to create a swap file.
+**NOTE:** This version of the script (v2.0) automatically detects your IP address, but also allows you to enter one manually. It will also give you the option to create a swap file.
 
 If you follow the steps and use a newly installed Ubuntu Server 18.04 VPS, it will assist in configuring and start your Node.
 
@@ -48,6 +48,8 @@ Launch Full Node Wallet & go to **Tools | Open ZelNode Management | Create ZelNo
 Click ZelNode Key to copy to clipboard
 
 4) **Download scrypt & begin installation of ZelNode**
+
+**PLEASE BE SURE YOU ARE LOGGED IN AS YOUR USERNAME BEFORE RUNNING THIS SCRIPT (NOT SU)**
 
 ```bash
 cd ~

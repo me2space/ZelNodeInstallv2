@@ -71,7 +71,7 @@ sudo apt-get update -y
 sudo apt-get install software-properties-common -y
 sudo apt-get update -y
 sudo apt-get upgrade -y
-sudo apt-get install nano htop pwgen ufw -y
+sudo apt-get install nano htop pwgen ufw figlet -y
 sudo apt-get install build-essential libtool pkg-config -y
 sudo apt-get install libc6-dev m4 g++-multilib -y
 sudo apt-get install autoconf ncurses-dev unzip git python python-zmq -y

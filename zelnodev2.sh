@@ -94,6 +94,11 @@ sudo apt-get remove sysbench -y
 echo -e "\033[1;33mPackages complete...\033[0m"
 echo -e
 
+if [ -f ~/.zelcash/zelcash.conf ]; then
+    echo -e "\033[1;36mExisting conf file found, backing up to zelcash.old ...\033[0m"
+    sudo mv ~/.zelcash/zelcash.conf ~/.zelcash/zelcash.old;
+fi
+
 RPCUSER=`pwgen -1 8 -n`
 PASSWORD=`pwgen -1 20 -n`
 if [ "x$PASSWORD" = "x" ]; then
@@ -102,8 +107,6 @@ fi
     echo -e "\n\033[1;34mCreating MainNet Conf File...\033[0m"
     sleep 3
     mkdir ~/.zelcash
-    cp ~/.zelcash/zelcash.conf ~/.zelcash/zelcash.org 2>/dev/null
-    rm ~/.zelcash/zelcash.conf 2>/dev/null
     touch ~/.zelcash/$CONFIG_FILE
 	    echo "rpcuser=$RPCUSER" >> ~/.zelcash/$CONFIG_FILE
     echo "rpcpassword=$PASSWORD" >> ~/.zelcash/$CONFIG_FILE

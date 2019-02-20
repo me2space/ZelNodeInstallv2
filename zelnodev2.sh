@@ -102,8 +102,8 @@ fi
     echo -e "\n\033[1;34mCreating MainNet Conf File...\033[0m"
     sleep 3
     mkdir ~/.zelcash
-    #cp ~/.zelcash/zelcash.conf ~/.zelcash/zelcash.org
-    #rm ~/.zelcash/zelcash.conf
+    cp ~/.zelcash/zelcash.conf ~/.zelcash/zelcash.org
+    rm ~/.zelcash/zelcash.conf
     touch ~/.zelcash/$CONFIG_FILE
 	    echo "rpcuser=$RPCUSER" >> ~/.zelcash/$CONFIG_FILE
     echo "rpcpassword=$PASSWORD" >> ~/.zelcash/$CONFIG_FILE

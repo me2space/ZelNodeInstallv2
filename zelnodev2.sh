@@ -163,12 +163,14 @@ cd
 	cp -r ~/zeltemp/chainstate ~/.zelcash/
 	cp -r ~/zeltemp/blocks ~/.zelcash/  
 	rm ~/zeltemp -R
-    echo -e
+    echo ""
     echo -e "\033[1;33mDone downloading wallet bootstrap file.\033[0m"
 #end download/extract bootstrap file
 
 cd
+echo ""
 echo -e "\033[1;32mDownloading chain params...\033[0m"
+sleep 2
 wget $FETCHPARAMS
 chmod u+x fetch-params.sh
 bash fetch-params.sh
@@ -244,10 +246,10 @@ printf "\033[1;34m"
 figlet -t -k "WELCOME   TO   zelnodes" 
 printf "\e[0m"
 
-echo "\033[1;33m========================================================================================"
+echo -e "\033[1;33m========================================================================================"
 echo -e "\033[1;32mPLEASE COMPLETE THE ZELNODE SETUP IN YOUR ZELCORE WALLET\033[0m"
 echo -e "COURTESY OF \033[1;32mALTTANK FAM\033[0m, \033[1;32mDK808 \033[0m, \033[1;32mGOOSE-TECH \033[0m & \033[1;32mSkyslayer"
-echo "\033[1;33m========================================================================================\033[0m"
+echo -e "\033[1;33m========================================================================================\033[0m"
 echo -e
 read -n1 -r -p "Press any key to continue..." key
 for (( countera=15; countera>0; countera-- ))

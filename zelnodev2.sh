@@ -20,7 +20,6 @@
 
 
 ###### you must be logged in as a sudo user, not root #######
-[ "$UID" -eq 0 ] || exec sudo "$0" "$@"
 
 COIN_NAME='zelcash'
 
@@ -59,8 +58,14 @@ echo -e '\033[1;34m19 Feb. 2019, by alltank fam, dk808zelnode, Goose-Tech & Skys
 echo -e
 echo -e '\033[1;36mNode setup starting, press [CTRL-C] to cancel.\033[0m'
 sleep 3
-
 echo -e
+
+if [ "$USERNAME" = "root" ]; then
+    echo -e "\033[1;36mYou are currently logged in as \033[0mroot\033[1;36m, please log out and\nlog back in with the username you just created.\033[0m"
+    exit
+fi
+    echo -e "Hello $USERNAME, please enter your password: "
+    [ "$UID" -eq 0 ] || exec sudo "$0" "$@"
 
 WANIP=$(wget http://ipecho.net/plain -O - -q)
 
@@ -123,6 +128,7 @@ fi
     #echo "externalip=$WANIP" >> ~/.zelcash/$CONFIG_FILE
     #echo "bind=$WANIP" >> ~/.zelcash/$CONFIG_FILE
     echo "addnode=explorer.zel.cash" >> ~/.zelcash/$CONFIG_FILE
+    echo "addnode=explorer.zel.zelcore.io" >> ~/.zelcash/$CONFIG_FILE
     echo "maxconnections=999" >> ~/.zelcash/$CONFIG_FILE
 
 sleep 3
@@ -233,10 +239,10 @@ printf "\033[1;34m"
 figlet -t -k "WELCOME   TO   zelnodes" 
 printf "\e[0m"
 
-echo "========================================================================================"
+echo "\033[1;33m========================================================================================"
 echo -e "\033[1;32mPLEASE COMPLETE THE ZELNODE SETUP IN YOUR ZELCORE WALLET\033[0m"
-echo -e "COURTESY OF \033[1;32mALTTANK FAM\033[0m, \033[1;32mDK808 \033[0m, \033[1;32mGOOSE-TECH \033[0m & \033[1;32mSkyslayer \033[0m"
-echo "========================================================================================"
+echo -e "COURTESY OF \033[1;32mALTTANK FAM\033[0m, \033[1;32mDK808 \033[0m, \033[1;32mGOOSE-TECH \033[0m & \033[1;32mSkyslayer"
+echo "\033[1;33m========================================================================================\033[0m"
 echo -e
 read -n1 -r -p "Press any key to continue..." key
 for (( countera=15; countera>0; countera-- ))

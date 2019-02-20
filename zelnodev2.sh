@@ -53,9 +53,9 @@ FETCHPARAMS='https://raw.githubusercontent.com/zelcash/zelcash/master/zcutil/fet
 #Suppressing password promts for this user so zelnode can operate
 sudo echo -e "$(who -m | awk '{print $1;}') ALL=(ALL) NOPASSWD:ALL" | sudo EDITOR='tee -a' visudo
 clear
-echo -e '\033[1;33m=======================================================\033[0m'
-echo -e 'ZelNode Setup, v2.0'
-echo -e '\033[1;33m=======================================================\033[0m'
+echo -e '\033[1;33m==================================================================\033[0m'
+echo -e 'ZelNode Setup, v2.1'
+echo -e '\033[1;33m==================================================================\033[0m'
 echo -e '\033[1;34m19 Feb. 2019, by alltank fam, dk808zelnode, Goose-Tech & Skyslayer\033[0m'
 echo -e
 echo -e '\033[1;36mNode setup starting, press [CTRL-C] to cancel.\033[0m'
@@ -93,19 +93,6 @@ sudo apt-get install autoconf ncurses-dev unzip git python python-zmq -y
 sudo apt-get install wget curl bsdmainutils automake -y
 echo -e "\033[1;33mPackages complete...\033[0m"
 echo -e
-#function jumpto
-#{
-#    label=$1
-#    cmd=$(sed -n "/$label:/{:a;n;p;ba};" $0 | grep -v ':$')
-#    eval "$cmd"
-#    exit
-#}
-
-#start=${1:-"start"}
-
-#jumpto $start
-
-#start:
 
 PASSWORD=`pwgen -1 20 -n`
 if [ "x$PASSWORD" = "x" ]; then
@@ -114,8 +101,8 @@ fi
     echo -e "\n\033[1;34mCreating MainNet Conf File...\033[0m"
     sleep 3
     mkdir ~/.zelcash
-    cp ~/.zelcash/zelcash.conf ~/.zelcash/zelcash.org
-	rm ~/.zelcash/zelcash.conf
+    #cp ~/.zelcash/zelcash.conf ~/.zelcash/zelcash.org
+    #rm ~/.zelcash/zelcash.conf
     touch ~/.zelcash/$CONFIG_FILE
 	    echo "rpcuser=$RPCUSER" >> ~/.zelcash/$CONFIG_FILE
     echo "rpcpassword=$PASSWORD" >> ~/.zelcash/$CONFIG_FILE
@@ -242,17 +229,22 @@ printf "\033[1;34m"
 figlet -t -k "WELCOME   TO   zelnodes" 
 printf "\e[0m"
 
-echo "============================================================================="
+echo "========================================================================================"
 echo -e "\033[1;32mPLEASE COMPLETE THE ZELNODE SETUP IN YOUR ZELCORE WALLET\033[0m"
-echo -e "COURTESY OF \033[1;32mALTTANK FAM\033[0m, \033[1;32mDK808 \033[0mAND \033[1;32mGOOSE-TECH \033[0m"
-echo "============================================================================="
+echo -e "COURTESY OF \033[1;32mALTTANK FAM\033[0m, \033[1;32mDK808 \033[0m, \033[1;32mGOOSE-TECH \033[0m & \033[1;32mSkyslayer \033[0m"
+echo "========================================================================================"
 echo -e
-sleep 15
+read -n1 -r -p "Press any key to continue..." key
 for (( countera=15; countera>0; countera-- ))
 do
 clear
+echo -e "\033[1;33m==========================================================="
+echo -e "\033[1;32mZELNODE SYNC STATUS"
+echo -e "THIS SCREEN REFRESHES EVERY 30 SECONDS"
+echo -e "===========================================================\033[0m"
+echo ""
 sudo zelcash-cli getinfo
-echo -e '\033[1;32mPress CTRL-C when correct blockheight has been reached.\033[0m'
+echo -e '\033[1;32mPress [CTRL-C] when correct blockheight has been reached.\033[0m'
     for (( counterb=30; counterb>0; counterb-- ))
     do
     echo -n ". "

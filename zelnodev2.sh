@@ -129,7 +129,12 @@ fi
     #echo "bind=$WANIP" >> ~/.zelcash/$CONFIG_FILE
     echo "addnode=explorer.zel.cash" >> ~/.zelcash/$CONFIG_FILE
     echo "addnode=explorer.zel.zelcore.io" >> ~/.zelcash/$CONFIG_FILE
-    echo "maxconnections=999" >> ~/.zelcash/$CONFIG_FILE
+    echo "addnode=explorer2.zel.cash" >> ~/.zelcash/$CONFIG_FILE
+    echo "addnode=explorer.zelcash.online" >> ~/.zelcash/$CONFIG_FILE
+    echo "addnode=node-eu.zelcash.com" >> ~/.zelcash/$CONFIG_FILE
+    echo "addnode=node-uk.zelcash.com" >> ~/.zelcash/$CONFIG_FILE
+    echo "addnode=node-asia.zelcash.com" >> ~/.zelcash/$CONFIG_FILE
+    echo "maxconnections=256" >> ~/.zelcash/$CONFIG_FILE
 
 sleep 3
 

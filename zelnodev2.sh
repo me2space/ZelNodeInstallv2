@@ -120,8 +120,8 @@ fi
     echo "txindex=1" >> ~/.zelcash/$CONFIG_FILE
     echo "listen=1" >> ~/.zelcash/$CONFIG_FILE
     echo "logtimestamps=1" >> ~/.zelcash/$CONFIG_FILE
-    echo "externalip=$WANIP" >> ~/.zelcash/$CONFIG_FILE
-    echo "bind=$WANIP" >> ~/.zelcash/$CONFIG_FILE
+    #echo "externalip=$WANIP" >> ~/.zelcash/$CONFIG_FILE
+    #echo "bind=$WANIP" >> ~/.zelcash/$CONFIG_FILE
     echo "addnode=explorer.zel.cash" >> ~/.zelcash/$CONFIG_FILE
     echo "maxconnections=999" >> ~/.zelcash/$CONFIG_FILE
 

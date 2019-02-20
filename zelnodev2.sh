@@ -90,6 +90,7 @@ sudo apt-get install build-essential libtool pkg-config -y
 sudo apt-get install libc6-dev m4 g++-multilib -y
 sudo apt-get install autoconf ncurses-dev unzip git python python-zmq -y
 sudo apt-get install wget curl bsdmainutils automake -y
+sudo apt-get purge sysbench -y
 echo -e "\033[1;33mPackages complete...\033[0m"
 echo -e
 

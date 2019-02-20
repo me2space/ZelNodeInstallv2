@@ -53,7 +53,7 @@ Click ZelNode Key to copy to clipboard
 
 ```bash
 cd ~
-sudo wget -O zelnode.sh https://raw.githubusercontent.com/Goose-Tech/ZelNodeInstallv2/master/zelnodev2.sh && sudo chmod u+x zelnode.sh && sudo ./zelnode.sh
+sudo wget -O zelnode.sh https://raw.githubusercontent.com/zelcash/ZelNodeInstallv2/master/zelnodev2.sh && sudo chmod u+x zelnode.sh && sudo ./zelnode.sh
 ```
 
 **Follow instructions to run the install script** which will install and configure your node with all necessary options.

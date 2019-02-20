@@ -64,8 +64,8 @@ if [ "$USERNAME" = "root" ]; then
     echo -e "\033[1;36mYou are currently logged in as \033[0mroot\033[1;36m, please log out and\nlog back in with the username you just created.\033[0m"
     exit
 fi
-    echo -e "Hello $USERNAME, please enter your password: "
-    [ "$UID" -eq 0 ] || exec sudo "$0" "$@"
+    #echo -e "Hello $USERNAME, please enter your password: "
+    #[ "$UID" -eq 0 ] || exec sudo "$0" "$@"
 
 WANIP=$(wget http://ipecho.net/plain -O - -q)
 

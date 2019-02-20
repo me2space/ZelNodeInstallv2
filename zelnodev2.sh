@@ -20,7 +20,7 @@
 
 
 ###### you must be logged in as a sudo user, not root #######
-
+[ "$UID" -eq 0 ] || exec sudo "$0" "$@"
 
 COIN_NAME='zelcash'
 

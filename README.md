@@ -1,7 +1,7 @@
 # ZelNode Setup v2
 A bash script to assist in setup/creation of ZelCash Node
 
-## NOTE: This script is configured for testnet only. When prompted, please select option for testnet.
+## NOTE: This script is currently in beta for MainNet ZelNodes.
 
 **NOTE:** This installation guide is provided as is with no warranties of any kind.
 
@@ -12,7 +12,7 @@ If you follow the steps and use a newly installed Ubuntu Server 18.04 VPS, it wi
 ***
 ## Requirements
 1) **ZEL Collateral (10K Basic / 25K Super / 100K BAMF)**
-2) **VPS running Linux Ubuntu 18.04** (benchmark requirements can't be guaranteed for servers that the team hasn't tested)
+2) **VPS running Linux Ubuntu 16.04** (benchmark requirements can't be guaranteed for servers that the team hasn't tested)
 3) **Controller wallet (ZelCore or ZelCash Swing Wallet)**
 4) **SSH client such as [Putty](https://www.putty.org/)**
 

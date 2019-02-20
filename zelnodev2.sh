@@ -258,7 +258,7 @@ clear
 echo -e "\033[1;33m==========================================================="
 echo -e "\033[1;32mZELNODE SYNC STATUS"
 echo -e "THIS SCREEN REFRESHES EVERY 30 SECONDS"
-echo -e "===========================================================\033[0m"
+echo -e "\033[1;33m===========================================================\033[0m"
 echo ""
 sudo zelcash-cli getinfo
 echo -e '\033[1;32mPress [CTRL-C] when correct blockheight has been reached.\033[0m'

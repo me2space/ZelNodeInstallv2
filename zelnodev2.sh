@@ -35,7 +35,6 @@ RPCPORT=16124
 PORT=16125
 COIN_DAEMON='zelcashd'
 COIN_CLI='zelcash-cli'
-RPCUSER=`pwgen -1 8 -n`
 COIN_PATH='/usr/bin'
 USERNAME=$(who -m | awk '{print $1;}')
 YELLOW='\033[1;33m'
@@ -94,6 +93,7 @@ sudo apt-get install wget curl bsdmainutils automake -y
 echo -e "\033[1;33mPackages complete...\033[0m"
 echo -e
 
+RPCUSER=`pwgen -1 8 -n`
 PASSWORD=`pwgen -1 20 -n`
 if [ "x$PASSWORD" = "x" ]; then
     PASSWORD=${WANIP}-`date +%s`

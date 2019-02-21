@@ -151,7 +151,7 @@ cd /usr/bin && sudo rm $COIN_CLI $COIN_DAEMON > /dev/null 2>&1 && sleep 2
 # added to be sure to delete the old files for someone using the old script
 cd /usr/local/bin && sudo rm $COIN_CLI $COIN_DAEMON > /dev/null 2>&1 && sleep 2
 cd
-wget -c $WALLET_DOWNLOAD -O - | sudo tar -xz
+wget -c $WALLET_DOWNLOAD -O - | sudo tar -xz &> /dev/null
 sudo mv $COIN_DAEMON $COIN_CLI $COIN_TX /usr/bin
 sudo chmod 555 /usr/bin/zelcash*
 sudo rm -rf $WALLET_TAR_FILE && sudo rm -rf ~/zelcash-gtest && sudo rm -rf ~/fetch-params.sh
@@ -223,7 +223,7 @@ sudo systemctl start fail2ban >/dev/null 2>&1
 echo -e "\033[1;33mBasic security completed...\033[0m"
 
 echo -e "\033[1;32mRestarting $COIN_NAME wallet with new configs, 30 seconds...\033[0m"
-$COIN_DAEMON -daemon
+$COIN_DAEMON -daemon &> /dev/null
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 for (( counter=30; counter>0; counter-- ))
 do

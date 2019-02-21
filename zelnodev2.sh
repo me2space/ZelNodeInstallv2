@@ -52,10 +52,10 @@ FETCHPARAMS='https://raw.githubusercontent.com/zelcash/zelcash/master/zcutil/fet
 #Suppressing password promts for this user so zelnode can operate
 sudo echo -e "$(who -m | awk '{print $1;}') ALL=(ALL) NOPASSWD: /usr/bin/zelcashd" | sudo EDITOR='tee -a' visudo
 clear
-echo -e '\033[1;33m==================================================================\033[0m'
+echo -e '\033[1;33m==============================================================================\033[0m'
 echo -e 'ZelNode Setup, v2.1'
-echo -e '\033[1;33m==================================================================\033[0m'
-echo -e '\033[1;34m19 Feb. 2019, by alltank fam, dk808zelnode, Goose-Tech & Skyslayer\033[0m'
+echo -e '\033[1;33m==============================================================================\033[0m'
+echo -e '\033[1;34m19 Feb. 2019, by alltank fam, dk808zelnode, Goose-Tech, Skyslayer, & Packetflow\033[0m'
 echo -e
 echo -e '\033[1;36mNode setup starting, press [CTRL-C] to cancel.\033[0m'
 sleep 3

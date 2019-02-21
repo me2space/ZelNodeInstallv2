@@ -224,6 +224,9 @@ echo -e "\033[1;33mBasic security completed...\033[0m"
 
 echo -e "\033[1;32mRestarting $COIN_NAME wallet with new configs, 30 seconds...\033[0m"
 $COIN_DAEMON -daemon &> /dev/null
+
+sleep 15
+
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 for (( counter=30; counter>0; counter-- ))
 do
@@ -243,10 +246,10 @@ printf "\033[1;34m"
 figlet -t -k "WELCOME   TO   ZELNODES" 
 printf "\e[0m"
 
-echo -e "\033[1;33m========================================================================================================"
+echo -e "\033[1;33m================================================================================================"
 echo -e "\033[1;32mPLEASE COMPLETE THE ZELNODE SETUP IN YOUR ZELCORE/ZELMATE WALLET\033[0m"
 echo -e "COURTESY OF \033[1;32mALTTANK FAM\033[0m, \033[1;32mDK808\033[0m, \033[1;32mGOOSE-TECH\033[0m, \033[1;32mSKYSLAYER\033[0m, & \033[1;32mPACKETFLOW"
-echo -e "\033[1;33m========================================================================================================\033[0m"
+echo -e "\033[1;33m================================================================================================\033[0m"
 echo -e
 read -n1 -r -p "Press any key to continue..." key
 for (( countera=15; countera>0; countera-- ))

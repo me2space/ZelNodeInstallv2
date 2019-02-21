@@ -224,7 +224,7 @@ echo -e "\033[1;33mBasic security completed...\033[0m"
 
 echo -e "\033[1;32mRestarting $COIN_NAME wallet with new configs, 30 seconds...\033[0m"
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
-sudo systemctl start $COIN_NAME.service >/dev/null &> /dev/null
+$COIN_DAEMON -daemon
 for (( counter=30; counter>0; counter-- ))
 do
 echo -n ". "

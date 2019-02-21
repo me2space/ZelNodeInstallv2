@@ -223,8 +223,8 @@ sudo systemctl start fail2ban >/dev/null 2>&1
 echo -e "\033[1;33mBasic security completed...\033[0m"
 
 echo -e "\033[1;32mRestarting $COIN_NAME wallet with new configs, 30 seconds...\033[0m"
-sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 $COIN_DAEMON -daemon
+sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 for (( counter=30; counter>0; counter-- ))
 do
 echo -n ". "

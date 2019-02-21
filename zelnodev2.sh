@@ -204,7 +204,6 @@ sudo systemctl enable $COIN_NAME.service &> /dev/null
 
 echo -e "\033[1;33mSystemctl Complete....\033[0m"
 
-echo "If you see *error* message, do not worry we are killing wallet again to make sure its dead"
 echo ""
 echo -e "\033[1;33m=================================================================="
 echo "DO NOT CLOSE THIS WINDOW OR TRY TO FINISH THIS PROCESS "

@@ -158,7 +158,7 @@ sudo rm -rf $WALLET_TAR_FILE && sudo rm -rf ~/zelcash-gtest && sudo rm -rf ~/fet
 cd
 
 echo -e "\033[1;32mDownloading wallet bootstrap please be patient...\033[0m"
-wget -U Mozilla/5.0 $$WALLET_BOOTSTRAP &> /dev/null
+wget -U Mozilla/5.0 $WALLET_BOOTSTRAP &> /dev/null
 unzip $BOOTSTRAP_ZIP_FILE -d /home/$USERNAME/.zelcash &> /dev/null
 rm -rf $BOOTSTRAP_ZIP_FILE
 #end download/extract bootstrap file

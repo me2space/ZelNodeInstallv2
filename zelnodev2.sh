@@ -52,9 +52,9 @@ FETCHPARAMS='https://raw.githubusercontent.com/zelcash/zelcash/master/zcutil/fet
 #Suppressing password promts for this user so zelnode can operate
 sudo echo -e "$(who -m | awk '{print $1;}') ALL=(ALL) NOPASSWD: /usr/bin/zelcashd" | sudo EDITOR='tee -a' visudo
 clear
-echo -e '\033[1;33m==============================================================================\033[0m'
+echo -e '\033[1;33m===============================================================================\033[0m'
 echo -e 'ZelNode Setup, v2.1'
-echo -e '\033[1;33m==============================================================================\033[0m'
+echo -e '\033[1;33m===============================================================================\033[0m'
 echo -e '\033[1;34m19 Feb. 2019, by AltTank fam, dk808, Goose-Tech, Skyslayer, & Packetflow\033[0m'
 echo -e
 echo -e '\033[1;36mNode setup starting, press [CTRL-C] to cancel.\033[0m'
@@ -151,7 +151,7 @@ cd /usr/bin && sudo rm $COIN_CLI $COIN_DAEMON > /dev/null 2>&1 && sleep 2
 # added to be sure to delete the old files for someone using the old script
 cd /usr/local/bin && sudo rm $COIN_CLI $COIN_DAEMON > /dev/null 2>&1 && sleep 2
 cd
-wget -c $WALLET_DOWNLOAD -O - | sudo tar -xz &> /dev/null
+wget -c $WALLET_DOWNLOAD -O - | sudo tar -xz > /dev/null 2>&1
 sudo mv $COIN_DAEMON $COIN_CLI $COIN_TX /usr/bin
 sudo chmod 555 /usr/bin/zelcash*
 sudo rm -rf $WALLET_TAR_FILE && sudo rm -rf ~/zelcash-gtest && sudo rm -rf ~/fetch-params.sh

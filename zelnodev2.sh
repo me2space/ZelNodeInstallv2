@@ -263,6 +263,7 @@ echo -e "THIS SCREEN REFRESHES EVERY 30 SECONDS"
 echo -e "\033[1;33m===========================================================\033[0m"
 echo ""
 $COIN_CLI getinfo
+sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 echo -e '\033[1;32mPress [CTRL-C] when correct blockheight has been reached.\033[0m'
     for (( counterb=30; counterb>0; counterb-- ))
     do

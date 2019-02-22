@@ -1,11 +1,11 @@
-# ZelNode Setup v2
+# ZelNode Setup v2.2
 A bash script to assist in setup/creation of ZelCash Node
 
 ## NOTE: This script is currently in beta for MainNet ZelNodes.
 
 **NOTE:** This installation guide is provided as is with no warranties of any kind.
 
-**NOTE:** This version of the script (v2.0) automatically detects your IP address, but also allows you to enter one manually. 
+**NOTE:** This version of the script (v2.2) automatically detects your IP address, but also allows you to enter one manually. 
 
 If you follow the steps and use a newly installed Ubuntu Server 18.04 VPS, it will assist in configuring and start your Node.
 

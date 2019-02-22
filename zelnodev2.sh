@@ -222,11 +222,12 @@ sudo systemctl enable fail2ban >/dev/null 2>&1
 sudo systemctl start fail2ban >/dev/null 2>&1
 echo -e "\033[1;33mBasic security completed...\033[0m"
 
-echo -e "\033[1;32mRestarting $COIN_NAME wallet with new configs, 30 seconds...\033[0m"
+echo -e "\033[1;32mRestarting $COIN_NAME wallet with new configs please be patient this could take up to 5 minutes...\033[0m"
 $COIN_DAEMON -daemon &> /dev/null
-
+sleep 150
+$COIN_CLI stop &> /dev/null
 sleep 15
-
+$COIN_DAEMON -daemon &> /dev/null
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 for (( counter=30; counter>0; counter-- ))
 do

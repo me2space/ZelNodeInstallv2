@@ -151,7 +151,7 @@ cd /usr/bin && sudo rm $COIN_CLI $COIN_DAEMON > /dev/null 2>&1 && sleep 2
 # added to be sure to delete the old files for someone using the old script
 cd /usr/local/bin && sudo rm $COIN_CLI $COIN_DAEMON > /dev/null 2>&1 && sleep 2
 cd
-wget -c $WALLET_DOWNLOAD -O - | sudo tar -xz > /dev/null 2>&1
+wget -c $WALLET_DOWNLOAD -O - | sudo tar -xz >/dev/null &> /dev/null
 sudo mv $COIN_DAEMON $COIN_CLI $COIN_TX /usr/bin
 sudo chmod 555 /usr/bin/zelcash*
 sudo rm -rf $WALLET_TAR_FILE && sudo rm -rf ~/zelcash-gtest && sudo rm -rf ~/fetch-params.sh

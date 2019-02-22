@@ -53,7 +53,7 @@ FETCHPARAMS='https://raw.githubusercontent.com/zelcash/zelcash/master/zcutil/fet
 sudo echo -e "$(who -m | awk '{print $1;}') ALL=(ALL) NOPASSWD:ALL" | sudo EDITOR='tee -a' visudo
 clear
 echo -e '\033[1;33m===============================================================================\033[0m'
-echo -e 'ZelNode Setup, v2.1'
+echo -e 'ZelNode Setup, v2.2'
 echo -e '\033[1;33m===============================================================================\033[0m'
 echo -e '\033[1;34m19 Feb. 2019, by AltTank fam, dk808, Goose-Tech, Skyslayer, & Packetflow\033[0m'
 echo -e

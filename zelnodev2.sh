@@ -222,12 +222,13 @@ sudo systemctl enable fail2ban >/dev/null 2>&1
 sudo systemctl start fail2ban >/dev/null 2>&1
 echo -e "\033[1;33mBasic security completed...\033[0m"
 
-echo -e "\033[1;32mRestarting $COIN_NAME wallet with new configs please be patient this could take up to 5 minutes...\033[0m"
+echo -e "\033[1;32mRestarting $COIN_NAME wallet with new configs please be patient this could take up to 6-8 minutes...\033[0m"
 $COIN_DAEMON -daemon &> /dev/null
-sleep 150
+sleep 330
 $COIN_CLI stop &> /dev/null
 sleep 15
 $COIN_DAEMON -daemon &> /dev/null
+sleep 15
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 for (( counter=30; counter>0; counter-- ))
 do
@@ -238,7 +239,7 @@ printf "\n"
 
 echo -e "\033[1;32mGetting info...\033[0m"
 $COIN_CLI getinfo
-
+sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 echo -e "\033[1;32mStarting your ZelNode with final details\033[0m"
 
 sleep 10
@@ -261,7 +262,7 @@ echo -e "\033[1;32mZELNODE SYNC STATUS"
 echo -e "THIS SCREEN REFRESHES EVERY 30 SECONDS"
 echo -e "\033[1;33m===========================================================\033[0m"
 echo ""
-zelcash-cli getinfo
+$COIN_CLI getinfo
 echo -e '\033[1;32mPress [CTRL-C] when correct blockheight has been reached.\033[0m'
     for (( counterb=30; counterb>0; counterb-- ))
     do

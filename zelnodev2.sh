@@ -169,7 +169,7 @@ wget -c $WALLET_DOWNLOAD -O - | sudo tar -xz &> /dev/null
 sudo mv $COIN_DAEMON $COIN_CLI $COIN_TX /usr/bin
 sudo chmod 555 /usr/bin/zelcash*
 sudo rm -rf $WALLET_TAR_FILE && sudo rm -rf ~/zelcash-gtest && sudo rm -rf ~/fetch-params.sh
-cd
+
 
 echo -e "\033[1;32mDownloading wallet bootstrap please be patient...\033[0m"
 wget -U Mozilla/5.0 $WALLET_BOOTSTRAP
@@ -177,7 +177,7 @@ unzip $BOOTSTRAP_ZIP_FILE -d /home/$USERNAME/.zelcash
 rm -rf $BOOTSTRAP_ZIP_FILE
 #end download/extract bootstrap file
 
-cd
+
 echo ""
 echo -e "\033[1;32mDownloading chain params...\033[0m"
 wget -q $FETCHPARAMS

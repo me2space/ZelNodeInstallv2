@@ -51,4 +51,4 @@ sleep 1
 done
 printf "\n"
 echo -e "\033[1;32mUpdate complete.\nPlease reboot the VPS by typing: \033[0msudo reboot -n\033[1;32m."
-echo -e "Then verify the node has started by typing: \033[0msudo zelcash-cli getinfo\033[1;32m."
+echo -e "Then verify the node has started by typing: \033[0msudo zelcash-cli getinfo\033[1;32m.\033[0m"

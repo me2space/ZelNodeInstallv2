@@ -19,7 +19,7 @@ if [ "$USERNAME" = "root" ]; then
     exit
 fi
 
-USERNAME=$(who -m | awk '{print $1;}')
+USERNAME=$SUDO_USER
 echo -e "\033[1;36mYou are currently logged in as \033[0m$USERNAME\033[1;36m.\n\n"
 read -p 'Was this username used to install the node? [Y/n] ' -n 1 -r
 if [[ $REPLY =~ ^[Nn]$ ]]

@@ -30,6 +30,7 @@ then
 fi
 
 cd /home/$USERNAME
+systemctl stop zelcash &> /dev/null
 echo -e "\033[1;34mMaking updates...\033[0m"
 sudo rm zelcash-gtest &> /dev/null
 sudo mv zelcash-tx /usr/bin &> /dev/null
@@ -37,4 +38,5 @@ sudo chmod 755 /usr/bin/zelcash-tx
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 rm plu.sh
 
-echo -e "\033[1;32mUpdate complete.\033[0m"
+echo -e "\033[1;32mUpdate complete. Please reboot the VPS by typing \033[0msudo reboot -n.\033[1;32m"
+echo -e "Then verify the node has started by typing \033[0msudo zelcash-cli getinfo\033[1;32m."

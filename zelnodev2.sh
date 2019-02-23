@@ -128,7 +128,7 @@ PASSWORD=`pwgen -1 20 -n`
 if [ "x$PASSWORD" = "x" ]; then
     PASSWORD=${WANIP}-`date +%s`
 fi
-    echo -e "\n\033[1;34mCreating MainNet Conf File...\033[0m"
+    echo -e "\n\033[1;32mCreating MainNet Conf File...\033[0m"
     sleep 3
     mkdir ~/.zelcash
     touch ~/.zelcash/$CONFIG_FILE
@@ -172,8 +172,8 @@ sudo rm -rf $WALLET_TAR_FILE && sudo rm -rf ~/zelcash-gtest && sudo rm -rf ~/fet
 cd
 
 echo -e "\033[1;32mDownloading wallet bootstrap please be patient...\033[0m"
-wget -U Mozilla/5.0 $WALLET_BOOTSTRAP &> /dev/null
-unzip $BOOTSTRAP_ZIP_FILE -d /home/$USERNAME/.zelcash &> /dev/null
+wget -U Mozilla/5.0 $WALLET_BOOTSTRAP
+unzip $BOOTSTRAP_ZIP_FILE -d /home/$USERNAME/.zelcash
 rm -rf $BOOTSTRAP_ZIP_FILE
 #end download/extract bootstrap file
 
@@ -187,7 +187,7 @@ sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 rm fetch-params.sh
 echo -e "\033[1;33mDone fetching chain params\033[0m"
 
-echo -e "\033[1;32mCreating system service file....\033[0m"
+echo -e "\033[1;32mCreating system service file...\033[0m"
 sudo touch /etc/systemd/system/$COIN_NAME.service
 sudo chown $USERNAME:$USERNAME /etc/systemd/system/$COIN_NAME.service
 cat << EOF > /etc/systemd/system/$COIN_NAME.service
@@ -236,7 +236,7 @@ sudo systemctl enable fail2ban >/dev/null 2>&1
 sudo systemctl start fail2ban >/dev/null 2>&1
 echo -e "\033[1;33mBasic security completed...\033[0m"
 
-echo -e "\033[1;32mRestarting $COIN_NAME wallet with new configs, please be patient...\033[0m"
+echo -e "\033[1;32mBenchmarking node & syncing $COIN_NAME wallet with blockchain, please be patient...\033[0m"
 $COIN_DAEMON -daemon &> /dev/null
 countdown "00:05:30"
 $COIN_CLI stop &> /dev/null
@@ -277,7 +277,7 @@ echo -e "\033[1;33m===========================================================\0
 echo ""
 $COIN_CLI getinfo
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
-echo -e '\033[1;32mPress [CTRL-C] when correct blockheight has been reached.\033[0m'
+echo -e '\033[1;32mPress [CTRL-C] when correct blockheight has been reached to exit.\033[0m'
     countdown "00:00:30"
 done
 printf "\n"

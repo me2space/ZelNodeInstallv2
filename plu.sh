@@ -35,15 +35,11 @@ then
 fi
 
 cd /home/$USERNAME
-echo -e "\033[1;34mStopping ZelNode...\033[0m"
-sudo systemctl stop zelcash &> /dev/null
+echo -e "\033[1;34mMaking updates...\033[0m"
 sudo rm zelcash-gtest &> /dev/null
 sudo mv zelcash-tx /usr/bin &> /dev/null
 sudo chmod 755 /usr/bin/zelcash-tx
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
-
-echo -e "\033[1;34mRestarting ZelNode...\033[0m"
-sudo systemctl start zelcash
 rm plu.sh
 
 echo -e "\033[1;32mUpdate complete.\033[0m"

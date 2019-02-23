@@ -238,7 +238,7 @@ echo -e "\033[1;33mBasic security completed...\033[0m"
 
 echo -e "\033[1;32mBenchmarking node & syncing $COIN_NAME wallet with blockchain, please be patient...\033[0m"
 $COIN_DAEMON -daemon &> /dev/null
-countdown "00:05:30"
+countdown "00:10:00"
 $COIN_CLI stop &> /dev/null
 sleep 15
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME

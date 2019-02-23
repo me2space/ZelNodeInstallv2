@@ -265,7 +265,7 @@ echo -e "COURTESY OF \033[1;34mALTTANK FAM\033[0m, \033[1;34mDK808\033[0m, \033[
 echo -e "\033[1;33m===================================================================\033[0m"
 echo -e
 read -n1 -r -p "Press any key to continue..." key
-for (( countera=15; countera>0; countera-- ))
+for (( countera=120; countera>0; countera-- ))
 do
 clear
 echo -e "\033[1;33m==========================================================="

@@ -73,7 +73,7 @@ To run Pre-Launch Update:
 2) **Run the following command**
 
 ```
-sudo wget -O https://raw.githubusercontent.com/zelcash/ZelNodeInstallv2/master/plu.sh && sudo chmod +x plu.sh && bash ./plu.sh
+sudo wget -O plu.sh https://raw.githubusercontent.com/zelcash/ZelNodeInstallv2/master/plu.sh && sudo chmod +x plu.sh && bash ./plu.sh
 ```
 3) **Reboot your VPS**
 

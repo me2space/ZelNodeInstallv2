@@ -242,6 +242,7 @@ countdown "00:05:30"
 $COIN_CLI stop &> /dev/null
 sleep 15
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
+echo -e "\033[1;32mRestarting ZelNode Daemon...\033[0m"
 $COIN_DAEMON -daemon &> /dev/null
 for (( counter=30; counter>0; counter-- ))
 do
@@ -250,11 +251,8 @@ sleep 1
 done
 printf "\n"
 
-#echo -e "\033[1;32mGetting info...\033[0m"
-#$COIN_CLI getinfo
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
-echo -e "\033[1;32mStarting your ZelNode with final details\033[0m"
-
+echo -e "\033[1;32mFinalizing ZelNode Setup...\033[0m"
 sleep 5
 
 printf "\033[1;34m"
@@ -263,7 +261,7 @@ printf "\e[0m"
 
 echo -e "\033[1;33m==================================================================="
 echo -e "\033[1;32mPLEASE COMPLETE THE ZELNODE SETUP IN YOUR ZELCORE/ZELMATE WALLET\033[0m"
-echo -e "COURTESY OF \033[1;32mALTTANK FAM\033[0m, \033[1;32mDK808\033[0m, \033[1;32mGOOSE-TECH\033[0m, \033[1;32mSKYSLAYER\033[0m, & \033[1;32mPACKETFLOW"
+echo -e "COURTESY OF \033[1;34mALTTANK FAM\033[0m, \033[1;34mDK808\033[0m, \033[1;34mGOOSE-TECH\033[0m, \033[1;34mSKYSLAYER\033[0m, & \033[1;34mPACKETFLOW"
 echo -e "\033[1;33m===================================================================\033[0m"
 echo -e
 read -n1 -r -p "Press any key to continue..." key

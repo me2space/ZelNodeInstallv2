@@ -37,6 +37,7 @@ COIN_CLI='zelcash-cli'
 COIN_TX='zelcash-tx'
 COIN_PATH='/usr/bin'
 USERNAME=$(who -m | awk '{print $1;}')
+SSHPORT=22
 YELLOW='\033[1;33m'
 BLUE='\033[1;34m'
 GREEN='\033[1;32m'
@@ -94,6 +95,14 @@ if [[ $REPLY =~ ^[Nn]$ ]]
 then
     echo -e
     read -p 'Enter the IP address for your VPS, then hit [ENTER]: ' WANIP
+fi
+
+echo ""
+read -p '\033[1;36mWhat port to use for SSH access or press [ENTER] for default 22: ' SSHPORT
+if [ -z "$SSHPORT" ]; then
+    echo -e "\033[1;33mUsing default SSH port 22."
+else
+    read -p '\033[1;36mEnter the IP address for your VPS, then hit [ENTER]: \033[0m' SSHPORT
 fi
 
 echo ""
@@ -228,6 +237,7 @@ echo ""
 echo -e "\033[1;32mConfiguring firewall and enabling fail2ban...\033[0m"
 sudo ufw allow ssh/tcp
 sudo ufw allow $PORT/tcp
+sudo ufw allow $SSHPORT/tcp
 sudo ufw logging on
 sudo ufw default deny incoming
 sudo ufw default allow outgoing

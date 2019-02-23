@@ -49,16 +49,33 @@ FETCHPARAMS='https://raw.githubusercontent.com/zelcash/zelcash/master/zcutil/fet
 #
 #
 
+#countdown timer to provide outputs for forced pauses
+#countdown "00:00:30" is a 30 second countdown
+countdown()
+(
+  IFS=:
+  set -- $*
+  secs=$(( ${1#0} * 3600 + ${2#0} * 60 + ${3#0} ))
+  while [ $secs -gt 0 ]
+  do
+    sleep 1 &
+    printf "\r%02d:%02d:%02d" $((secs/3600)) $(( (secs/60)%60)) $((secs%60))
+    secs=$(( $secs - 1 ))
+    wait
+  done
+  echo -e "\033[1K"
+)
+
 #Suppressing password promts for this user so zelnode can operate
 sudo echo -e "$(who -m | awk '{print $1;}') ALL=(ALL) NOPASSWD:ALL" | sudo EDITOR='tee -a' visudo
 clear
 echo -e '\033[1;33m===============================================================================\033[0m'
-echo -e 'ZelNode Setup, v2.2'
+echo -e 'ZelNode Setup, v2.3'
 echo -e '\033[1;33m===============================================================================\033[0m'
-echo -e '\033[1;34m19 Feb. 2019, by AltTank fam, dk808, Goose-Tech, Skyslayer, & Packetflow\033[0m'
+echo -e '\033[1;34m23 Feb. 2019, by AltTank fam, dk808, Goose-Tech, Skyslayer, & Packetflow\033[0m'
 echo -e
 echo -e '\033[1;36mNode setup starting, press [CTRL-C] to cancel.\033[0m'
-sleep 3
+countdown "00:00:03"
 echo -e
 
 if [ "$USERNAME" = "root" ]; then
@@ -87,21 +104,17 @@ echo -e "\033[1;33m=======================================================\033[0
 echo "INSTALLING ZELNODE DEPENDENCIES"
 echo -e "\033[1;33m=======================================================\033[0m"
 echo "Installing packages and updates..."
-sudo apt-get update -y &> /dev/null
-sudo apt-get install software-properties-common -y &> /dev/null
-sudo apt-get update -y &> /dev/null
-sudo apt-get upgrade -y &> /dev/null
-sudo apt-get install nano htop pwgen ufw figlet -y &> /dev/null
-echo "....."
-sudo apt-get install build-essential libtool pkg-config -y &> /dev/null
-echo "...."
-sudo apt-get install libc6-dev m4 g++-multilib -y &> /dev/null
-echo "..."
-sudo apt-get install autoconf ncurses-dev unzip git python python-zmq -y &> /dev/null
-echo ".."
-sudo apt-get install wget curl bsdmainutils automake -y &> /dev/null
-echo "."
-sudo apt-get remove sysbench -y &> /dev/null
+sleep 2
+sudo apt-get update -y
+sudo apt-get install software-properties-common -y
+sudo apt-get update -y
+sudo apt-get upgrade -y
+sudo apt-get install nano htop pwgen ufw figlet -y
+sudo apt-get install build-essential libtool pkg-config -y
+sudo apt-get install libc6-dev m4 g++-multilib -y
+sudo apt-get install autoconf ncurses-dev unzip git python python-zmq -y
+sudo apt-get install wget curl bsdmainutils automake -y
+sudo apt-get remove sysbench -y
 echo -e "\033[1;33mPackages complete...\033[0m"
 echo -e
 
@@ -115,11 +128,11 @@ PASSWORD=`pwgen -1 20 -n`
 if [ "x$PASSWORD" = "x" ]; then
     PASSWORD=${WANIP}-`date +%s`
 fi
-    echo -e "\n\033[1;34mCreating MainNet Conf File...\033[0m"
+    echo -e "\n\033[1;32mCreating MainNet Conf File...\033[0m"
     sleep 3
     mkdir ~/.zelcash
     touch ~/.zelcash/$CONFIG_FILE
-	    echo "rpcuser=$RPCUSER" >> ~/.zelcash/$CONFIG_FILE
+    echo "rpcuser=$RPCUSER" >> ~/.zelcash/$CONFIG_FILE
     echo "rpcpassword=$PASSWORD" >> ~/.zelcash/$CONFIG_FILE
     echo "rpcallowip=127.0.0.1" >> ~/.zelcash/$CONFIG_FILE
     #echo "rpcport=$RPCPORT" >> ~/.zelcash/$CONFIG_FILE
@@ -142,10 +155,11 @@ fi
     echo "addnode=node-asia.zelcash.com" >> ~/.zelcash/$CONFIG_FILE
     echo "maxconnections=256" >> ~/.zelcash/$CONFIG_FILE
 
-sleep 3
+sleep 2
 
 #begin downloading wallet binaries
-echo -e "\033[1;32mKilling and removing all old instances of $COIN_NAME and Downloading new wallet...\033[0m"
+echo -e "\033[1;32mKilling and removing any old instances of $COIN_NAME."
+echo -e "Downloading new wallet...\033[0m"
 sudo killall $COIN_DAEMON > /dev/null 2>&1
 cd /usr/bin && sudo rm $COIN_CLI $COIN_DAEMON > /dev/null 2>&1 && sleep 2
 # added to be sure to delete the old files for someone using the old script
@@ -155,25 +169,25 @@ wget -c $WALLET_DOWNLOAD -O - | sudo tar -xz &> /dev/null
 sudo mv $COIN_DAEMON $COIN_CLI $COIN_TX /usr/bin
 sudo chmod 555 /usr/bin/zelcash*
 sudo rm -rf $WALLET_TAR_FILE && sudo rm -rf ~/zelcash-gtest && sudo rm -rf ~/fetch-params.sh
-cd
+
 
 echo -e "\033[1;32mDownloading wallet bootstrap please be patient...\033[0m"
-wget -U Mozilla/5.0 $WALLET_BOOTSTRAP &> /dev/null
-unzip $BOOTSTRAP_ZIP_FILE -d /home/$USERNAME/.zelcash &> /dev/null
+wget -U Mozilla/5.0 $WALLET_BOOTSTRAP
+unzip $BOOTSTRAP_ZIP_FILE -d /home/$USERNAME/.zelcash
 rm -rf $BOOTSTRAP_ZIP_FILE
 #end download/extract bootstrap file
 
-cd
+
 echo ""
 echo -e "\033[1;32mDownloading chain params...\033[0m"
-wget -q $FETCHPARAMS &> /dev/null
+wget -q $FETCHPARAMS
 chmod 770 fetch-params.sh &> /dev/null
-sudo bash fetch-params.sh &> /dev/null
+sudo bash fetch-params.sh
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 rm fetch-params.sh
-echo -e "\033[1;33mDone fetching chain params\033[0m"
+echo -e "\033[1;33mDone fetching chain params.\033[0m"
 
-echo -e "\033[1;32mCreating system service file....\033[0m"
+echo -e "\033[1;32mCreating system service file...\033[0m"
 sudo touch /etc/systemd/system/$COIN_NAME.service
 sudo chown $USERNAME:$USERNAME /etc/systemd/system/$COIN_NAME.service
 cat << EOF > /etc/systemd/system/$COIN_NAME.service
@@ -207,7 +221,7 @@ echo -e "\033[1;33mSystemctl Complete....\033[0m"
 echo ""
 echo -e "\033[1;33m=================================================================="
 echo "DO NOT CLOSE THIS WINDOW OR TRY TO FINISH THIS PROCESS "
-echo "PLEASE WAIT 2 MINUTES UNTIL YOU SEE THE RELOADING WALLET MESSAGE"
+echo "PLEASE WAIT UNTIL YOU SEE THE RESTARTING WALLET MESSAGE"
 echo -e "==================================================================\033[0m"
 echo ""
 
@@ -222,14 +236,14 @@ sudo systemctl enable fail2ban >/dev/null 2>&1
 sudo systemctl start fail2ban >/dev/null 2>&1
 echo -e "\033[1;33mBasic security completed...\033[0m"
 
-echo -e "\033[1;32mRestarting $COIN_NAME wallet with new configs please be patient this could take up to 6-8 minutes...\033[0m"
+echo -e "\033[1;32mBenchmarking node & syncing $COIN_NAME wallet with blockchain, please be patient...\033[0m"
 $COIN_DAEMON -daemon &> /dev/null
-sleep 330
+countdown "00:05:30"
 $COIN_CLI stop &> /dev/null
 sleep 15
-$COIN_DAEMON -daemon &> /dev/null
-sleep 15
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
+echo -e "\033[1;32mRestarting ZelNode Daemon...\033[0m"
+$COIN_DAEMON -daemon &> /dev/null
 for (( counter=30; counter>0; counter-- ))
 do
 echo -n ". "
@@ -237,24 +251,21 @@ sleep 1
 done
 printf "\n"
 
-echo -e "\033[1;32mGetting info...\033[0m"
-$COIN_CLI getinfo
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
-echo -e "\033[1;32mStarting your ZelNode with final details\033[0m"
-
-sleep 10
+echo -e "\033[1;32mFinalizing ZelNode Setup...\033[0m"
+sleep 5
 
 printf "\033[1;34m"
 figlet -t -k "WELCOME   TO   ZELNODES" 
 printf "\e[0m"
 
-echo -e "\033[1;33m================================================================================================"
+echo -e "\033[1;33m==================================================================="
 echo -e "\033[1;32mPLEASE COMPLETE THE ZELNODE SETUP IN YOUR ZELCORE/ZELMATE WALLET\033[0m"
-echo -e "COURTESY OF \033[1;32mALTTANK FAM\033[0m, \033[1;32mDK808\033[0m, \033[1;32mGOOSE-TECH\033[0m, \033[1;32mSKYSLAYER\033[0m, & \033[1;32mPACKETFLOW"
-echo -e "\033[1;33m================================================================================================\033[0m"
+echo -e "COURTESY OF \033[1;34mALTTANK FAM\033[0m, \033[1;34mDK808\033[0m, \033[1;34mGOOSE-TECH\033[0m, \033[1;34mSKYSLAYER\033[0m, & \033[1;34mPACKETFLOW"
+echo -e "\033[1;33m===================================================================\033[0m"
 echo -e
 read -n1 -r -p "Press any key to continue..." key
-for (( countera=15; countera>0; countera-- ))
+for (( countera=120; countera>0; countera-- ))
 do
 clear
 echo -e "\033[1;33m==========================================================="
@@ -264,11 +275,7 @@ echo -e "\033[1;33m===========================================================\0
 echo ""
 $COIN_CLI getinfo
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
-echo -e '\033[1;32mPress [CTRL-C] when correct blockheight has been reached.\033[0m'
-    for (( counterb=30; counterb>0; counterb-- ))
-    do
-    echo -n ". "
-    sleep 1
-    done
+echo -e '\033[1;32mPress [CTRL-C] when correct blockheight has been reached to exit.\033[0m'
+    countdown "00:00:30"
 done
 printf "\n"

@@ -180,12 +180,12 @@ rm -rf $BOOTSTRAP_ZIP_FILE
 cd
 echo ""
 echo -e "\033[1;32mDownloading chain params...\033[0m"
-wget -q $FETCHPARAMS &> /dev/null
+wget -q $FETCHPARAMS
 chmod 770 fetch-params.sh &> /dev/null
-sudo bash fetch-params.sh &> /dev/null
+sudo bash fetch-params.sh
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 rm fetch-params.sh
-echo -e "\033[1;33mDone fetching chain params\033[0m"
+echo -e "\033[1;33mDone fetching chain params.\033[0m"
 
 echo -e "\033[1;32mCreating system service file...\033[0m"
 sudo touch /etc/systemd/system/$COIN_NAME.service

@@ -1,13 +1,26 @@
 #ZelNode Pre-Launch Update for Already Running Nodes
 #!/bin/bash
 
-#This script will change owner and group of the working directory of systemctl service for the daemon.
-#It will also remove some files that are not needed and also put the zelcash-tx binary to it's right location.
+#This script will change owner and group of the zelcash working directory so the daemon runs as a service.
+#It will also remove some files that are not needed and put the zelcash-tx binary to /usr/bin directory.
 
-USERNAME=$SUDO_USER
+clear
+echo -e '\033[1;33m===============================================================================\033[0m'
+echo -e 'ZelNode Pre-Launch Update v1.0'
+echo -e '\033[1;33m===============================================================================\033[0m'
+echo -e '\033[1;34m22 Feb. 2019, by dk808, Goose-Tech, & Skyslayer\033[0m'
+echo -e
+echo -e '\033[1;36mUpdate starting, press [CTRL-C] to cancel.\033[0m'
+sleep 3
+echo -e
 
+USERNAME=$(who -m | awk '{print $1;}')
+
+cd /home/$USERNAME
 sudo rm zelcash-gtest
 sudo mv zelcash-tx /usr/bin
 sudo chmod 555 /usr/bin/zelcash-tx
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 rm prelaunchupdate.sh
+
+echo -e "\033[1;32mUpdate complete.\033[0m"

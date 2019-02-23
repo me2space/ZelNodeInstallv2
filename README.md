@@ -64,11 +64,3 @@ __NOTE:__ This process may take anywhere from 5 to 15 minutes, depending on your
 Once the script completes, it will output the wallet info, which shows the sync status. Make sure blocks is > 0.
 
 A special thank you to **AltTank fam**, **dk808**, **Skyslayer**, & **Packetflow** for their contributions to this scrypt, and the **ZelCash Team** for debugging and assistance.
-
-If you found this script helpful, please consider donating:
-
-ETH: 0x685B96f616580652d74BB3646ce3F5EAF1658431
-
-BTC: 1JhgmwdQ4SLjPVbvKKHg2NyRrQUmFkZMwz
-
-ZEL: t1RaDa9zxbrqFx8F6aiLMkW6UbgtokfiXnw

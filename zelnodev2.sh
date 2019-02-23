@@ -63,7 +63,7 @@ countdown()
     secs=$(( $secs - 1 ))
     wait
   done
-  echo
+  echo -e "\033[1K"
 )
 
 #Suppressing password promts for this user so zelnode can operate
@@ -158,7 +158,8 @@ fi
 sleep 2
 
 #begin downloading wallet binaries
-echo -e "\033[1;32mKilling and removing all old instances of $COIN_NAME and Downloading new wallet...\033[0m"
+echo -e "\033[1;32mKilling and removing any old instances of $COIN_NAME."
+echo -e "Downloading new wallet...\033[0m"
 sudo killall $COIN_DAEMON > /dev/null 2>&1
 cd /usr/bin && sudo rm $COIN_CLI $COIN_DAEMON > /dev/null 2>&1 && sleep 2
 # added to be sure to delete the old files for someone using the old script
@@ -240,9 +241,8 @@ $COIN_DAEMON -daemon &> /dev/null
 countdown "00:05:30"
 $COIN_CLI stop &> /dev/null
 sleep 15
+sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 $COIN_DAEMON -daemon &> /dev/null
-sleep 15
-#sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 for (( counter=30; counter>0; counter-- ))
 do
 echo -n ". "
@@ -255,16 +255,16 @@ printf "\n"
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 echo -e "\033[1;32mStarting your ZelNode with final details\033[0m"
 
-sleep 10
+sleep 5
 
 printf "\033[1;34m"
 figlet -t -k "WELCOME   TO   ZELNODES" 
 printf "\e[0m"
 
-echo -e "\033[1;33m================================================================================================"
+echo -e "\033[1;33m==================================================================="
 echo -e "\033[1;32mPLEASE COMPLETE THE ZELNODE SETUP IN YOUR ZELCORE/ZELMATE WALLET\033[0m"
 echo -e "COURTESY OF \033[1;32mALTTANK FAM\033[0m, \033[1;32mDK808\033[0m, \033[1;32mGOOSE-TECH\033[0m, \033[1;32mSKYSLAYER\033[0m, & \033[1;32mPACKETFLOW"
-echo -e "\033[1;33m================================================================================================\033[0m"
+echo -e "\033[1;33m===================================================================\033[0m"
 echo -e
 read -n1 -r -p "Press any key to continue..." key
 for (( countera=15; countera>0; countera-- ))
@@ -276,6 +276,7 @@ echo -e "THIS SCREEN REFRESHES EVERY 30 SECONDS"
 echo -e "\033[1;33m===========================================================\033[0m"
 echo ""
 $COIN_CLI getinfo
+sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 echo -e '\033[1;32mPress [CTRL-C] when correct blockheight has been reached.\033[0m'
     countdown "00:00:30"
 done

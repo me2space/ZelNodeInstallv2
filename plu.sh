@@ -25,13 +25,8 @@ read -p 'Was this username used to install the node? [Y/n] ' -n 1 -r
 if [[ $REPLY =~ ^[Nn]$ ]]
 then
     echo ""
-    read -p 'Please enter the correct username, then hit [ENTER]: ' UNAME
-      if [ -z "$UNAME" ]; then
-      echo -e "Please enter a valid username or login as the correct user."
+    echo -e "\033[1;33mPlease log out and login with the username you created for your node.\033[0m"
       exit 1
-      else
-      USERNAME=$UNAME
-      fi
 fi
 
 cd /home/$USERNAME

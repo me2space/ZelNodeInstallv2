@@ -20,7 +20,7 @@ if [ "$USERNAME" = "root" ]; then
 fi
 
 USERNAME=$(who -m | awk '{print $1;}')
-echo -e "\033[1;36mYou are currently logged in as \033[0m$USERNAME\033[1;36m.\033[0m"
+echo -e "\033[1;36mYou are currently logged in as \033[0m$USERNAME\033[1;36m.\n\n"
 read -p 'Was this username used to install the node? [Y/n] ' -n 1 -r
 if [[ $REPLY =~ ^[Nn]$ ]]
 then
@@ -30,13 +30,20 @@ then
 fi
 
 cd /home/$USERNAME
-systemctl stop zelcash &> /dev/null
-echo -e "\033[1;34mMaking updates...\033[0m"
+echo -e "\033[1;36mStopping ZelNode daemon...\033[0m"
+sudo systemctl stop zelcash &> /dev/null
+for (( counter=15; counter>0; counter-- ))
+do
+echo -n ". "
+sleep 1
+done
+printf "\n"
+echo -e "\033[1;36mPerforming updates...\033[0m"
 sudo rm zelcash-gtest &> /dev/null
 sudo mv zelcash-tx /usr/bin &> /dev/null
 sudo chmod 755 /usr/bin/zelcash-tx
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
-rm plu.sh
+rm ~/plu.sh
 
-echo -e "\033[1;32mUpdate complete. Please reboot the VPS by typing \033[0msudo reboot -n.\033[1;32m"
-echo -e "Then verify the node has started by typing \033[0msudo zelcash-cli getinfo\033[1;32m."
+echo -e "\033[1;32mUpdate complete. Please reboot the VPS by typing: \033[0msudo reboot -n\033[1;32m."
+echo -e "Then verify the node has started by typing: \033[0msudo zelcash-cli getinfo\033[1;32m."

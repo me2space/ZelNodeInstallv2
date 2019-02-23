@@ -44,6 +44,11 @@ sudo mv zelcash-tx /usr/bin &> /dev/null
 sudo chmod 755 /usr/bin/zelcash-tx
 sudo chown -R $USERNAME:$USERNAME /home/$USERNAME
 rm ~/plu.sh
-
-echo -e "\033[1;32mUpdate complete. Please reboot the VPS by typing: \033[0msudo reboot -n\033[1;32m."
+for (( counter=3; counter>0; counter-- ))
+do
+echo -n ". "
+sleep 1
+done
+printf "\n"
+echo -e "\033[1;32mUpdate complete.\nPlease reboot the VPS by typing: \033[0msudo reboot -n\033[1;32m."
 echo -e "Then verify the node has started by typing: \033[0msudo zelcash-cli getinfo\033[1;32m."

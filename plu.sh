@@ -14,7 +14,25 @@ echo -e "\033[1;36mUpdate starting, press [CTRL-C] to cancel.\033[0m"
 sleep 3
 echo ""
 
+if [ "$USERNAME" = "root" ]; then
+    echo -e "\033[1;36mYou are currently logged in as \033[0mroot\033[1;36m, please log out and\nlog back in with the username you created for your node.\033[0m"
+    exit
+fi
+
 USERNAME=$(who -m | awk '{print $1;}')
+echo -e "\033[1;36mYou are currently logged in as \033[0m$USERNAME\033[1;36m.\033[0m"
+read -p 'Was this username used to install the node? [Y/n] ' -n 1 -r
+if [[ $REPLY =~ ^[Nn]$ ]]
+then
+    echo ""
+    read -p 'Please enter the correct username, then hit [ENTER]: ' UNAME
+      if [ -z "$UNAME" ]; then
+      echo -e "Please enter a valid username or login as the correct user."
+      exit 1
+      else
+      USERNAME=$UNAME
+      fi
+fi
 
 cd /home/$USERNAME
 echo -e "\033[1;34mStopping ZelNode...\033[0m"

@@ -35,7 +35,7 @@ or Digital Ocean: https://m.do.co/c/c9c22684c5db (link to $100 referral credit f
 
 ```
 adduser <YOURUSERNAME>
-usermod -aG sudo <YOURUSERNAME>
+usermod -aG adm,systemd-journal,sudo <YOURUSERNAME>
 reboot -n
 ```
 

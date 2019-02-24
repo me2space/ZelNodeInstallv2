@@ -70,9 +70,9 @@ countdown()
 #Suppressing password promts for this user so zelnode can operate
 sudo echo -e "$(who -m | awk '{print $1;}') ALL=(ALL) NOPASSWD:ALL" | sudo EDITOR='tee -a' visudo
 clear
-echo -e '\033[1;33m===============================================================================\033[0m'
+echo -e '\033[1;33m========================================================================\033[0m'
 echo -e 'ZelNode Setup, v2.3'
-echo -e '\033[1;33m===============================================================================\033[0m'
+echo -e '\033[1;33m========================================================================\033[0m'
 echo -e '\033[1;34m23 Feb. 2019, by AltTank fam, dk808, Goose-Tech, Skyslayer, & Packetflow\033[0m'
 echo -e
 echo -e '\033[1;36mNode setup starting, press [CTRL-C] to cancel.\033[0m'
@@ -97,12 +97,13 @@ then
     read -p 'Enter the IP address for your VPS, then hit [ENTER]: ' WANIP
 fi
 
-echo ""
-read -p '\033[1;36mWhat port to use for SSH access or press [ENTER] for default 22: ' SSHPORT
+echo -e "\033[1;36m\n"
+read -p 'Enter port to use for SSH access or press [ENTER] for default 22: ' SSHPORT
 if [ -z "$SSHPORT" ]; then
-    echo -e "\033[1;33mUsing default SSH port 22."
+    SSHPORT=22
+    echo -e "\033[1;33mUsing default SSH port ${SSHPORT}."
 else
-    read -p '\033[1;36mEnter the IP address for your VPS, then hit [ENTER]: \033[0m' SSHPORT
+    echo -e "\033[1;33mUsing new SSH port ${SSHPORT}.\033[0m\n"
 fi
 
 echo ""

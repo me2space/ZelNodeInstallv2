@@ -32,6 +32,7 @@ fi
 cd /home/$USERNAME
 echo -e "\033[1;36mStopping ZelNode daemon...\033[0m"
 sudo systemctl stop zelcash &> /dev/null
+sudo zelcash-cli stop &> /dev/null
 for (( counter=15; counter>0; counter-- ))
 do
 echo -n ". "

@@ -34,7 +34,7 @@ echo -e '\033[1;33m=============================================================
 echo -e '\033[1;34m19 Feb. 2019, by alltank fam, dk808zelnode, Goose-Tech & Skyslayer\033[0m'
 echo -e
 echo -e '\033[1;36mZelNode update starting, press [CTRL-C] to cancel.\033[0m'
-sleep 5
+sleep 3
 echo -e
 #check for correct user
 USERNAME=$(who -m | awk '{print $1;}')
@@ -60,8 +60,10 @@ echo "Installing package updates..."
 sudo apt-get update -y
 sudo apt-get upgrade -y
 echo -e "\033[1;32mLinux Packages Updates complete...\033[0m"
+#Setup log rotation
 echo -e "\n\033[1;33mConfiguring log rotate function...\033[0m"
-sudo cat >> /etc/logrotate.conf <<EOF
+touch /home/$USERNAME/zeldebuglog
+cat <<EOM > /home/$USERNAME/zeldebuglog
 /home/$USERNAME/.zelcash/debug.log {
     compress
     copytruncate
@@ -69,8 +71,10 @@ sudo cat >> /etc/logrotate.conf <<EOF
     daily
     rotate 7
 }
-EOF
-echo -e "\n\033[1;32mLog rotate config complete.\033[0m"
+EOM
+cat /home/$USERNAME/zeldebuglog | sudo tee -a /etc/logrotate.d/zeldebuglog > /dev/null
+rm /home/$USERNAME/zeldebuglog
+echo -e "\n\033[1;32mLog rotate configuration complete.\033[0m"
 
 #Closing zelcash daemon
 echo -e "\033[1;33mStopping & removing all old instances of $COIN_NAME and Downloading new wallet...\033[0m"

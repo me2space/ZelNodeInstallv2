@@ -74,7 +74,8 @@ cat <<EOM > /home/$USERNAME/zeldebuglog
 EOM
 cat /home/$USERNAME/zeldebuglog | sudo tee -a /etc/logrotate.d/zeldebuglog > /dev/null
 rm /home/$USERNAME/zeldebuglog
-echo -e "\n\033[1;32mLog rotate configuration complete.\033[0m"
+echo -e "\n\033[1;32mLog rotate configuration complete.\n~/.zelcash/debug.log file will be backed up daily for 7 days then rotated.\033[0m"
+sleep 5
 
 #Closing zelcash daemon
 echo -e "\033[1;33mStopping & removing all old instances of $COIN_NAME and Downloading new wallet...\033[0m"

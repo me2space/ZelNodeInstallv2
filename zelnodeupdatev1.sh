@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 ###### you must be logged in as a sudo user, not root #######
 # This script will update your ZelNode daemon to the current release
 
@@ -34,7 +33,7 @@ echo -e 'ZelNode Update, v1.0'
 echo -e '\033[1;33m==================================================================\033[0m'
 echo -e '\033[1;34m19 Feb. 2019, by alltank fam, dk808zelnode, Goose-Tech & Skyslayer\033[0m'
 echo -e
-echo -e '\033[1;36mZelNode updat starting, press [CTRL-C] to cancel.\033[0m'
+echo -e '\033[1;36mZelNode update starting, press [CTRL-C] to cancel.\033[0m'
 sleep 5
 echo -e
 #check for correct user
@@ -55,23 +54,32 @@ fi
 
 #Install Ubuntu updates
 echo -e "\033[1;33m=======================================================\033[0m"
-echo "Updating your distro"
+echo "Updating your OS..."
 echo -e "\033[1;33m=======================================================\033[0m"
-echo "Installing distro updates..."
+echo "Installing package updates..."
 sudo apt-get update -y
 sudo apt-get upgrade -y
-echo -e "\033[1;33mLinux Packages Updates complete...\033[0m"
-echo -e
+echo -e "\033[1;32mLinux Packages Updates complete...\033[0m"
+echo -e "\n\033[1;33mConfiguring log rotate function...\033[0m"
+sudo cat >> /etc/logrotate.conf <<EOF
+/home/$USERNAME/.zelcash/debug.log {
+    compress
+    copytruncate
+    missingok
+    daily
+    rotate 7
+}
+EOF
+echo -e "\n\033[1;32mLog rotate config complete.\033[0m"
 
 #Closing zelcash daemon
-echo -e "\033[1;32mClosing,removing all old instances of $COIN_NAME and Downloading new wallet...\033[0m"
+echo -e "\033[1;33mStopping & removing all old instances of $COIN_NAME and Downloading new wallet...\033[0m"
 sudo systemctl stop zelcash > /dev/null 2>&1 && sleep 3
 sudo zelcash-cli stop > /dev/null 2>&1 && sleep 5
 sudo killall $COIN_DAEMON > /dev/null 2>&1
 #Removing old zelcash files
-cd /usr/bin && sudo rm -rf zelcash* > /dev/null 2>&1
-####################SKY Pause next line
-read -n1 -r -p "Press any key to continue... check deleted files" key
+sudo rm -rf /usr/bin/zelcash* > /dev/null 2>&1
+echo -e "\033[1;33mDownloading new wallet binaries...\033[0m"
 #begin downloading wallet binaries
 cd
 mkdir ~/zeltemp
@@ -85,9 +93,3 @@ cd
 #Notice to user we are complete and request a reboot
 echo -e "\033[1;32mUpdate complete.\nPlease reboot the VPS by typing: \033[0msudo reboot -n\033[1;32m."
 echo -e "Then verify the ZelCash daemon has started by typing: \033[0mzelcash-cli getinfo\033[1;32m.\033[0m"
-
-
-
-
-
-

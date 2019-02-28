@@ -64,7 +64,7 @@ echo -e "\033[1;32mLinux Packages Updates complete...\033[0m"
 #Setup log rotation
 echo -e "\n\033[1;33mConfiguring log rotate function...\033[0m"
 if [ -f /etc/logrotate.d/zeldebuglog ]; then
-    echo -e "\033[1;36mExisting log rotate conf found, backing up to ~/logrotate.old ...\033[0m"
+    echo -e "\033[1;36mExisting log rotate conf found, backing up to ~/zeldebuglogrotate.old ...\033[0m"
     sudo mv /etc/logrotate.d/zeldebuglog ~/logrotate.old;
 fi
 touch /home/$USERNAME/zeldebuglog

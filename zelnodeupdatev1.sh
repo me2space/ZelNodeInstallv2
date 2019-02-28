@@ -47,7 +47,8 @@ then
       exit 1
 fi
 #check for root and exit with notice if user is root
-if [ "$USERNAME" = "root" ]; then
+ISROOT=$(whoami | awk '{print $1;}')
+if [ "$ISROOT" = "root" ]; then
     echo -e "\033[1;36mYou are currently logged in as \033[0mroot\033[1;36m, please log out and\nlog back in with as your sudo user.\033[0m"
     exit
 fi

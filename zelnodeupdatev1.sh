@@ -75,8 +75,8 @@ cat <<EOM > /home/$USERNAME/zeldebuglog
 EOM
 cat /home/$USERNAME/zeldebuglog | sudo tee -a /etc/logrotate.d/zeldebuglog > /dev/null
 rm /home/$USERNAME/zeldebuglog
+sudo logrotate --force /etc/logrotate.d/zeldebuglog
 echo -e "\n\033[1;32mLog rotate configuration complete.\n~/.zelcash/debug.log file will be backed up daily for 7 days then rotated.\033[0m"
-sudo logrotate --force /etc/logrotate.d/ > /dev/null
 sleep 5
 
 #Closing zelcash daemon

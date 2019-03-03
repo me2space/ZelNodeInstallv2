@@ -25,8 +25,8 @@ COIN_NAME='hush'
 
 #wallet information
 WALLET_DOWNLOAD='https://github.com/Myhush/hush/releases/download/v2.0.0/hush-2.0.0.tar.gz'
-WALLET_BOOTSTRAP='https://zelcore.io/zelcashbootstraptxindex.zip'
-BOOTSTRAP_ZIP_FILE='zelcashbootstraptxindex.zip'
+WALLET_BOOTSTRAP='https://bootstrap.0x03.services/hush/HUSH-bootstrap.tar.gz'
+BOOTSTRAP_TAR_FILE='HUSH-bootstrap.tar.gz'
 WALLET_TAR_FILE='hush-2.0.0.tar.gz'
 ZIPTAR='unzip'
 CONFIG_FILE='hush.conf'
@@ -171,10 +171,10 @@ sudo rm -rf $WALLET_TAR_FILE && sudo rm -rf ~/hush-gtest && sudo rm -rf ~/fetch-
 
 echo -e "\033[1;32mDownloading wallet bootstrap please be patient...\033[0m"
 wget -U Mozilla/5.0 $WALLET_BOOTSTRAP
-unzip -o $BOOTSTRAP_ZIP_FILE -d /home/$USERNAME/.hush
-rm -rf $BOOTSTRAP_ZIP_FILE
+unzip -o $BOOTSTRAP_TAR_FILE -d /home/$USERNAME/.hush
+rm -rf $BOOTSTRAP_TAR_FILE
 #end download/extract bootstrap file
-
+#this will have to be fixed, zip file is now a tar file.  MUst fix!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
 
 echo ""
 echo -e "\033[1;32mDownloading chain params...\033[0m"

@@ -2,21 +2,24 @@
 
 ###### you must be logged in as a sudo user, not root #######
 
-COIN_NAME='zelcash'
+COIN_NAME='snowgem'
 
 #current wallet version found @https://github.com/zelcash/zelcash/releases
-WALLET_DOWNLOAD='https://github.com/zelcash/zelcash/releases/download/v3.1.0/ZelCash-Linux.tar.gz'
-FETCHPARAMS='https://raw.githubusercontent.com/zelcash/zelcash/master/zcutil/fetch-params.sh'
-WALLET_BOOTSTRAP='https://zelcore.io/zelcashbootstraptxindex.zip'
+WALLET_DOWNLOAD='https://github.com/Snowgem/Snowgem/releases/download/3000451-20190128/snowgem-ubuntu18.04-3000451-20190128.zip'
+#MUST FIX... EXPECTS .TAR.GZ BUT THIS IS .ZIP --------------------------------------------------------------
+
+
+FETCHPARAMS='https://raw.githubusercontent.com/Snowgem/Snowgem/v20180311/zcutil/fetch-params.sh'
+WALLET_BOOTSTRAP='https://zelcore.io/zelcashbootstraptxindex.zip'---------------------------------------------
 BOOTSTRAP_ZIP_FILE='zelcashbootstraptxindex.zip'
 WALLET_TAR_FILE='ZelCash-Linux.tar.gz'
 ZIPTAR='unzip'
-CONFIG_FILE='zelcash.conf'
+CONFIG_FILE='snowgem.conf'
 RPCPORT=16124
 PORT=16125
-COIN_DAEMON='zelcashd'
-COIN_CLI='zelcash-cli'
-COIN_TX='zelcash-tx'
+COIN_DAEMON='snowgemd'
+COIN_CLI='snowgem-cli'
+COIN_TX='snowgem-tx'
 COIN_PATH='/usr/bin'
 USERNAME=$(who -m | awk '{print $1;}')
 YELLOW='\033[1;33m'
@@ -46,7 +49,7 @@ countdown()
 sudo echo -e "$(who -m | awk '{print $1;}') ALL=(ALL) NOPASSWD:ALL" | sudo EDITOR='tee -a' visudo
 clear
 echo -e '\033[1;33m===============================================================================\033[0m'
-echo -e 'Node Setup for ZEL'
+echo -e 'Node Setup for XSG'
 echo -e 'March 11, 2019'
 echo -e '\033[1;33m===============================================================================\033[0m'
 
